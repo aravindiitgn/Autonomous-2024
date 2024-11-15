@@ -19,7 +19,7 @@ One Intel RealSense d435 RGBD camera and one Lenovo FHD webcam.
 Used an Arduino UNO R3 and a Neo 6mv2 GPS Module. The accuracy of this GPS module is close to 2.5~3.5 m while the GPS is fixed to atleast 5 satellites for trilateration.![image](https://github.com/user-attachments/assets/b914471f-1ac3-40b9-9c89-c2872a840783)
 
 ### Software
-So our aim is to run the cart autonomously anywhere inside our campus. For that we need to know where is it??
+So our aim is to run the cart autonomously anywhere inside our campus. For that we need to know where is it located.
 One of the difficulties was to get a map of the campus roads but thanks to OpenStreetMaps - ( an open source maps library) that made our jobs much easier. OpenStreetMaps comes with **osmnx** - a library that u can install directly via pip to your python and start using their functionalities like projection and map inference. ![image](https://github.com/user-attachments/assets/0b734ccb-e23b-4299-ae07-0e699680841a)
 
 
