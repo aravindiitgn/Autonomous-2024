@@ -66,4 +66,5 @@ We also implemented a trapizoidal velocity profiling method to increase & decrea
 
 
 ## Compute
+RTX 4060 GPU 
 
