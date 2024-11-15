@@ -1,0 +1,57 @@
+import cv2
+import os
+import time
+from datetime import datetime
+
+def capture_and_save_frames(cam_indices):
+    try:
+        # Open camera connections
+        caps = [cv2.VideoCapture(idx) for idx in cam_indices]
+
+        # Create folders for saving images
+        folder_names = ['left', 'center', 'right']
+        for folder_name in folder_names:
+            try:
+                os.makedirs(folder_name)
+            except FileExistsError:
+                pass
+
+        frame_counts = [0, 0, 0]
+        start_time = time.time()
+
+        while True:
+            frames = [cap.read()[1] for cap in caps]
+
+            for idx, frame in enumerate(frames):
+                # Save frame with timestamp and frame number in the filename
+                timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+                folder_name = folder_names[idx]
+                frame_filename = os.path.join(folder_name, f'frame_{frame_counts[idx]}_{timestamp}.png')
+                cv2.imwrite(frame_filename, frame)
+
+                frame_counts[idx] += 1
+
+            # Control frame rate to maximum fps
+            elapsed_time = time.time() - start_time
+            fps = 1 / elapsed_time
+            print(f"Frames captured at {fps:.2f} fps")
+
+            # Reset start time for next iteration
+            start_time = time.time()
+
+            # Break the loop on 'q' key press
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        # Release camera connections
+        for cap in caps:
+            cap.release()
+
+    except Exception as ex:
+        print(f"An error occurred: {ex}")
+
+if __name__ == "__main__":
+    # Specify camera indices
+    camera_indices = [1, 0, 2]  # Update with your camera indices
+
+    capture_and_save_frames(camera_indices)
