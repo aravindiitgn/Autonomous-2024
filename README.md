@@ -55,6 +55,12 @@ The cart then follows the path and starts and stops at the respective node point
 
 ## Acceleration
 
+The cart accelerates on a 5v logic circuit. The speed is changed by pressing the throttle potentiometer. 
+We bypassed the throttle cables and connected them to an arduino to send pwm to control speed digitally. Higher PWM = Higher speed.
+We also implemented a trapizoidal velocity profiling method to increase & decrease the velocity of the cart when an obstacle is detected.
+
+
+
 ## Power Electronics
 ![image](https://github.com/user-attachments/assets/5f02721d-c644-43b5-9c12-58185abe1ccf)
 
