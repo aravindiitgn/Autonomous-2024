@@ -19,7 +19,10 @@ The steering wheel of the cart is attached to a 12V high torque Planetary motor 
 ![image](https://github.com/user-attachments/assets/fdc8665f-5bf5-4186-9278-bc28cafdc0dd)
 
 ### Software
-Using the yolov11 model fine tuned on our dataset which comprised of images of our campus roads, we achieved correct lane masking for *all the roads in the campus. From the masked lane we extracted the centre line of the lane and from the camera feed, we know the centre line of the cart. From this, we calculate the error between the two and give PID pwm to the steering motor to align the two. That's how we achieve autonomous steering.
+Using the yolov11 model fine tuned on our dataset which comprised of images of our campus roads, we achieved correct lane masking for *all the roads in the campus. From the masked lane we extracted the centre line of the lane and from the camera feed, we know the centre line of the cart. From this, we calculate the error between the two and give PID pwm to the steering motor to align the two. That's how we achieve autonomous steering. ![Uploading image.png…]()
+ ![image](https://github.com/user-attachments/assets/589f63b4-60e5-4805-9319-615ab07a5905)
+
+
 
 ## Braking
 ### Hardware
