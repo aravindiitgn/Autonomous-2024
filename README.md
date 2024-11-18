@@ -155,4 +155,15 @@ project/
 
 ---
 
+# Open Issues and Improvement
+
+  - Shifting Chain sprocket mechanism to something more reliable (Linear Actuator or Meshed Gears)
+  - Tune PID of the steering to better Gain values
+  - Use more accurate GPS Module to have less than a meter accuracy - important for autonomous turns
+  - Integrate Safety mechanism/Manual Override into the cart from passenger side handles.
+  - Integrate both the lane Detection code and object detection/acceleration into one single code
+  - More robust breaking mechanism needs to be devised
+  - Obstacle ***avoidance***
+    
+
 
