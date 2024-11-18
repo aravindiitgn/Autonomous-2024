@@ -14,7 +14,7 @@ One Intel RealSense d435 RGBD camera and one Lenovo FHD webcam.
 ## Steering
 
 ### Hardware
-The steering wheel of the cart is attached to a 12V high torque Planetary motor that is controlled via an Arduino and a Cytron 30A motor Driver(Owing to high current draw). The Motor Driver is powered through a Genx 10k 25C 3S Lipo Battery.
+The steering wheel of the cart is attached to a 12V high torque Planetary motor that is controlled via an Arduino and a Cytron 30A motor Driver(Owing to high current draw). The Motor Driver is powered through a Genx 10k 25C 3S Lipo Battery. The motor is attached to the steering wheel via a chain and sprocket mechanism which introduces a lot of backlash errors.
 ![image](https://github.com/user-attachments/assets/823e722e-f74f-49ef-a425-b8ad93724349)
 ![image](https://github.com/user-attachments/assets/fdc8665f-5bf5-4186-9278-bc28cafdc0dd)
 
