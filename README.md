@@ -78,9 +78,6 @@ We also implemented a trapizoidal velocity profiling method to increase & decrea
 ## Compute
 RTX 4060 
 
-Here’s a comprehensive README file for your code that you can upload to GitHub:
-
----
 
 # YOLO11n-seg Lane Detection with Custom Dataset
 
