@@ -61,7 +61,7 @@ The GPS module prints the info in NMEA format that needs to be parsed.
 
 Thankfully there are libraries that parse the data for u (**pynmea2** in python and **TinyGPS++** in Arduino Library Manager)
 
-The cart then follows the path and starts and stops at the respective node point.
+The cart then follows the path and starts and stops at the respective start and end node points.
 
 ## Acceleration
 
