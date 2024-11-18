@@ -69,3 +69,79 @@ We also implemented a trapizoidal velocity profiling method to increase & decrea
 ## Compute
 RTX 4060 
 
+Here’s a comprehensive README file for your code that you can upload to GitHub:
+
+---
+
+# YOLO11n-seg Lane Detection with Custom Dataset
+
+## Features
+- Download and use a custom dataset from RoboFlow.
+- Train a YOLO11n-seg segmentation model with specified parameters.
+- Perform inference on test images using the trained model.
+- Save the predicted images to a specified directory.
+
+---
+
+## Prerequisites
+
+1. Python 3.8 or above.
+2. Installed libraries:
+   - `ultralytics`
+   - `cv2` (OpenCV)
+   - `matplotlib`
+   - `os`
+   - `roboflow`
+3. GPU support is recommended for training.
+
+---
+
+## Dataset
+
+The dataset is automatically downloaded from RoboFlow using the provided API key and project details.
+
+1. Replace `KKtkzf9xscdAPBPBf4bT` with your RoboFlow API key if needed.
+2. The dataset is downloaded and prepared for YOLO training format.
+
+---
+
+## Training the Model
+
+The model is trained using the following parameters:
+- **Epochs:** 50
+- **Image size:** 416x416
+- **Batch size:** 2
+- **Initial learning rate:** 0.0001
+
+Modify the training parameters as needed:
+```python
+results = model.train(
+    data='E:/Autonomus Veh/yolo_road/Lane-Detection-2-1/data.yaml',
+    epochs=50,
+    imgsz=416,
+    batch=2,
+    lr0=1e-4,
+    name='roboflow_yolo11_custom',
+    val=True,
+)
+```
+
+---
+
+## Directory Structure
+
+```
+project/
+│
+├── yolo11n-seg.pt               # YOLO11n model weights
+├── dataset/                     # Custom dataset downloaded from RoboFlow
+│   ├── train/                   # Training data
+│   ├── val/                     # Validation data
+│   └── test/                    # Test data
+├── predicted_images/            # Directory for storing inference results
+└── main.py                      # Script for training and testing the model
+```
+
+---
+
+
