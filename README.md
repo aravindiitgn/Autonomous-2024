@@ -14,14 +14,16 @@ One Intel RealSense d435 RGBD camera and one Lenovo FHD webcam.
 ## Steering
 
 ### Hardware
-The steering wheel of the cart is attached to a 12V high torque Planetary motor that is controlled via an Arduino and a Cytron 30A motor Driver(Owing to high current draw). The Motor Driver is powered through a Genx 10k 25C Lipo Battery.
+The steering wheel of the cart is attached to a 12V high torque Planetary motor that is controlled via an Arduino and a Cytron 30A motor Driver(Owing to high current draw). The Motor Driver is powered through a Genx 10k 25C 3S Lipo Battery.
 ![image](https://github.com/user-attachments/assets/823e722e-f74f-49ef-a425-b8ad93724349)
-![image](https://github.com/user-attachments/assets/1db6f9de-73a9-422e-b707-b086d6b07919)
+![image](https://github.com/user-attachments/assets/fdc8665f-5bf5-4186-9278-bc28cafdc0dd)
 
-
+### Software
+Using the yolov11 model fine tuned on our dataset which comprised of images of our campus roads, we achieved correct lane masking for *all the roads in the campus. From the masked lane we extracted the centre line of the lane and from the camera feed, we know the centre line of the cart. From this, we calculate the error between the two and give PID pwm to the steering motor to align the two. That's how we achieve autonomous steering.
 
 ## Braking
-
+### Hardware
+### Software
 ## Localization
 ### Hardware
 Used an Arduino UNO R3 and a Neo 6mv2 GPS Module. The accuracy of this GPS module is close to 2.5~3.5 m while the GPS is fixed to atleast 5 satellites for trilateration.![image](https://github.com/user-attachments/assets/b914471f-1ac3-40b9-9c89-c2872a840783)
