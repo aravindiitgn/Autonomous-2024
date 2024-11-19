@@ -87,7 +87,7 @@ RTX 4060
 # YOLO11n-seg Lane Detection with Custom Dataset
 
 ## Features
-- Download and use a custom dataset from RoboFlow.
+- Download and use a custom dataset of **700 images** from RoboFlow.
 - Train a YOLO11n-seg segmentation model with specified parameters.
 - Perform inference on test images using the trained model.
 - Save the predicted images to a specified directory.
