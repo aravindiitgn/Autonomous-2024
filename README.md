@@ -20,7 +20,8 @@ The steering wheel of the cart is attached to a 12V high torque Planetary motor 
 
 ### Software
 Using the yolov11 model fine tuned on our dataset which comprised of images of our campus roads, we achieved correct lane masking for *all the roads in the campus. From the masked lane we extracted the centre line of the lane and from the camera feed, we know the centre line of the cart. From this, we calculate the error between the two and give PID pwm to the steering motor to align the two. That's how we achieve autonomous steering. We could also find lanes during nighttime at low light conditions with this.  ![image](https://github.com/user-attachments/assets/43384238-b416-4606-9800-697b994d8421)
-![image](https://github.com/user-attachments/assets/589f63b4-60e5-4805-9319-615ab07a5905)![image](https://github.com/user-attachments/assets/f240f17b-c9f2-4c80-80ce-5ccca941b410)![image](https://github.com/user-attachments/assets/c73e072d-7b10-4257-a3e7-455b14be568f)
+![image](https://github.com/user-attachments/assets/589f63b4-60e5-4805-9319-615ab07a5905)![image](https://github.com/user-attachments/assets/f240f17b-c9f2-4c80-80ce-5ccca941b410)![image](https://github.com/user-attachments/assets/c73e072d-7b10-4257-a3e7-455b14be568f)![image](https://github.com/user-attachments/assets/daa3668f-5069-48f4-883b-da5cb0f14cb3)
+
 
 
 
