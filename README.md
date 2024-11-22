@@ -10,7 +10,7 @@ There are multiple sections of the cart on which modifications were done. ![14-s
 One Intel RealSense d435 RGBD camera and one Lenovo FHD webcam.
 
 ### Software
-
+The Intel RealSense d435 is used for obstacle detection and its distance estimation from the cart based on which we decide the cart's velocity. Currently we have 3 levels of velocity depending upon distance of the obstacle from the cart. The Lenovo FHD cam is used for lane detection, once we have the masked resgion of the lane for which we are using yolov11 pretrained model fine-tuned on our campus roads, we calculate the cross error betwen the masked lane's centre line and cart's centre line, we give the error in a PID controller which gives pwm commands to the motor connected to the steering wheel.
 ## Steering
 
 ### Hardware
@@ -29,7 +29,9 @@ Using the yolov11 model fine tuned on our dataset which comprised of images of o
 
 ## Braking
 ### Hardware
+We have bypassed the brake cables attached to the pedal and connected it to a 12v dc motor , wound the brake cable over it.
 ### Software
+Used a cytron 10A motor driver and an arduino to control the brake motor. When an obstacle is detected and is within the cart's lane, the arduino sends a pwm to the brake motor on which the brake cable is wound. 
 ## Localization
 ### Hardware
 Used an Arduino UNO R3 and a Neo 6mv2 GPS Module. The accuracy of this GPS module is close to 2.5~3.5 m while the GPS is fixed to atleast 5 satellites for trilateration.![image](https://github.com/user-attachments/assets/b914471f-1ac3-40b9-9c89-c2872a840783)
