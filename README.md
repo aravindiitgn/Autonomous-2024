@@ -28,7 +28,7 @@ The extracted lane mask is processed to compute the lane's centerline by averagi
 
 ### Implementation Images
 
-!(https://github.com/user-attachments/assets/43384238-b416-4606-9800-697b994d8421)
+![](https://github.com/user-attachments/assets/43384238-b416-4606-9800-697b994d8421)
 
 !(https://github.com/user-attachments/assets/589f63b4-60e5-4805-9319-615ab07a5905)
 
