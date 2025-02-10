@@ -143,11 +143,11 @@ class PIDController:
             output = self.min_output
         return output
 
-pid_controller = PIDController(Kp=1400, Ki=5.0, Kd=5000, max_output=255, min_output=-255)
+pid_controller = PIDController(Kp=1600, Ki=5.0, Kd=5000, max_output=255, min_output=-255)
 
 # Set up the camera for real-time video capture
 cv2.namedWindow("Lane Detection", cv2.WINDOW_NORMAL)
-cap = cv2.VideoCapture(1)  # Use 0 for the default camera
+cap = cv2.VideoCapture(0)  # Use 0 for the default camera
 
 while cap.isOpened():
     start_time = time.time()

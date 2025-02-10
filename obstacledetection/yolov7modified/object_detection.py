@@ -35,6 +35,7 @@ warnings.filterwarnings("ignore")
 com_port = 'COM4'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 # ser = serial.Serial(com_port, 9600)
 board = pyfirmata2.Arduino(com_port)
+
 print('Firmata connection established') 
 brake_dir = board.get_pin('d:13:o')  # Example pin setup for 'a'
 brake_pwm = board.get_pin('d:6:p')  # Example pin setup for 'b' as PWM
@@ -43,7 +44,7 @@ accn_2 = board.get_pin('d:3:o')
 accn_pwm = board.get_pin('d:10:p') #en
 
 brake_active = 0
-maxspeed = 140
+maxspeed = 160  
 # slowsspeed = 190
 currentspeed=0.0
 increment = 10.0
@@ -398,6 +399,7 @@ def detection():
     # board = Arduino('COM11')
     pipeline = None
     try:
+        
         colorizer = rs.colorizer()
         colorizer.set_option(rs.option.visual_preset, 1)
         colorizer.set_option(rs.option.histogram_equalization_enabled, 1.0)  # disable histogram equalization
@@ -469,6 +471,7 @@ def detection():
         # Set colorizer options
     
         while True:
+            
 
             # frames = pipeline.wait_for_frames()
             # color_frame = frames.get_color_frame()
