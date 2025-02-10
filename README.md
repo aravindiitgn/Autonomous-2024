@@ -1,3 +1,4 @@
+
 # Autonomous-2024
 This project is a result of a full semester course **ME 691-XIII Autonomous Vehicles** offered at IIT Gandhinagar by prof Harish PM. The project is completely student run and still under progress, there are further developments on the way. We have acheived Level 3 Autonomy on an Electric Golf cart with very less hardware changes.
 
@@ -9,11 +10,45 @@ There are multiple sections of the cart on which modifications were done. ![14-s
 One Intel RealSense d435 RGBD camera and one Lenovo FHD webcam.
 
 ### Software
+The Intel RealSense d435 is used for obstacle detection and its distance estimation from the cart based on which we decide the cart's velocity. Currently we have 3 levels of velocity depending upon distance of the obstacle from the cart. The Lenovo FHD cam is used for lane detection, once we have the masked resgion of the lane for which we are using yolov11 pretrained model fine-tuned on our campus roads, we calculate the cross error betwen the masked lane's centre line and cart's centre line, we give the error in a PID controller which gives pwm commands to the motor connected to the steering wheel.
+## Steering
 
-## Steering Control
+### Hardware
+The steering wheel of the cart is attached to a 12V high torque Planetary motor that is controlled via an Arduino and a Cytron 30A motor Driver(Owing to high current draw). The Motor Driver is powered through a Genx 10k 25C 3S Lipo Battery. The motor is attached to the steering wheel via a chain and sprocket mechanism which introduces a lot of backlash errors.
+![image](https://github.com/user-attachments/assets/823e722e-f74f-49ef-a425-b8ad93724349)
+![image](https://github.com/user-attachments/assets/fdc8665f-5bf5-4186-9278-bc28cafdc0dd)
+
+### Software
+
+This project implements an autonomous lane detection and steering system using a fine-tuned YOLOv11 model. The software processes real-time video feed to detect lanes, calculates the deviation between the lane centerline and the vehicle's centerline, and adjusts steering using a PID controller. The YOLOv11 model, trained on a custom campus road image dataset, effectively identifies lane boundaries even in low-light and nighttime conditions. A trapezoidal region of interest (ROI) mask is applied to focus the detection on the relevant road area.
+
+The extracted lane mask is processed to compute the lane's centerline by averaging lane pixel positions at each vertical level of the frame. The normalized deviation from the vehicle's centerline is then passed to the PID controller, which generates a proportional, integral, and derivative output to determine the steering adjustment. The system outputs real-time feedback on error and control signals overlaid on the video feed, ensuring intuitive monitoring. This streamlined software approach ensures precise and reliable lane detection and autonomous steering control in various conditions.
+
+---
+
+### Implementation Images
+
+![](https://github.com/user-attachments/assets/43384238-b416-4606-9800-697b994d8421)
+
+![](https://github.com/user-attachments/assets/589f63b4-60e5-4805-9319-615ab07a5905)
+
+![](https://github.com/user-attachments/assets/f240f17b-c9f2-4c80-80ce-5ccca941b410)
+
+![](https://github.com/user-attachments/assets/c73e072d-7b10-4257-a3e7-455b14be568f)
+
+![](https://github.com/user-attachments/assets/daa3668f-5069-48f4-883b-da5cb0f14cb3)
+
+
+
+
+
+
 
 ## Braking
-
+### Hardware
+We have bypassed the brake cables attached to the pedal and connected it to a 12v dc motor , wound the brake cable over it.
+### Software
+Used a cytron 10A motor driver and an arduino to control the brake motor. When an obstacle is detected and is within the cart's lane, the arduino sends a pwm to the brake motor on which the brake cable is wound. 
 ## Localization
 ### Hardware
 Used an Arduino UNO R3 and a Neo 6mv2 GPS Module. The accuracy of this GPS module is close to 2.5~3.5 m while the GPS is fixed to atleast 5 satellites for trilateration.![image](https://github.com/user-attachments/assets/b914471f-1ac3-40b9-9c89-c2872a840783)
@@ -51,7 +86,7 @@ The GPS module prints the info in NMEA format that needs to be parsed.
 
 Thankfully there are libraries that parse the data for u (**pynmea2** in python and **TinyGPS++** in Arduino Library Manager)
 
-The cart then follows the path and starts and stops at the respective node point.
+The cart then follows the path and starts and stops at the respective start and end node points.
 
 ## Acceleration
 
@@ -66,4 +101,89 @@ We also implemented a trapizoidal velocity profiling method to increase & decrea
 
 
 ## Compute
+RTX 4060 
+
+
+# YOLO11n-seg Lane Detection with Custom Dataset
+
+## Features
+- Download and use a custom dataset of **700 images** from RoboFlow.
+- Train a YOLO11n-seg segmentation model with specified parameters.
+- Perform inference on test images using the trained model.
+- Save the predicted images to a specified directory.
+
+---
+
+## Prerequisites
+
+1. Python 3.8 or above.
+2. Installed libraries:
+   - `ultralytics`
+   - `cv2` (OpenCV)
+   - `matplotlib`
+   - `os`
+   - `roboflow`
+3. GPU support is recommended for training.
+
+---
+
+## Dataset
+
+The dataset is automatically downloaded from RoboFlow using the provided API key and project details.
+
+1. Replace `KKtkzf9xscdAPBPBf4bT` with your RoboFlow API key if needed.
+2. The dataset is downloaded and prepared for YOLO training format.
+
+---
+
+## Training the Model
+
+The model is trained using the following parameters:
+- **Epochs:** 50
+- **Image size:** 416x416
+- **Batch size:** 2
+- **Initial learning rate:** 0.0001
+
+Modify the training parameters as needed:
+```python
+results = model.train(
+    data='E:/Autonomus Veh/yolo_road/Lane-Detection-2-1/data.yaml',
+    epochs=50,
+    imgsz=416,
+    batch=2,
+    lr0=1e-4,
+    name='roboflow_yolo11_custom',
+    val=True,
+)
+```
+
+---
+
+## Directory Structure
+
+```
+project/
+│
+├── yolo11n-seg.pt               # YOLO11n model weights
+├── dataset/                     # Custom dataset downloaded from RoboFlow
+│   ├── train/                   # Training data
+│   ├── val/                     # Validation data
+│   └── test/                    # Test data
+├── predicted_images/            # Directory for storing inference results
+└── main.py                      # Script for training and testing the model
+```
+
+---
+
+# Open Issues and Improvement
+
+  - Shifting Chain sprocket mechanism to something more reliable (Linear Actuator or Meshed Gears)
+  - Tune PID of the steering to better Gain values
+  - Use more accurate GPS Module to have less than a meter accuracy - important for autonomous turns
+  - Integrate Safety mechanism/Manual Override into the cart from passenger side handles.
+  - Integrate both the lane Detection code and object detection/acceleration into one single code
+  - More robust breaking mechanism needs to be devised
+  - Obstacle ***avoidance***
+    
+
 
